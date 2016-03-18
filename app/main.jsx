@@ -3,8 +3,6 @@ var ReactDOM = require('react-dom');
 var TruckItemStore = require ('./stores/TruckItemStore.jsx');
 var TruckItemList = require('./components/TruckItemList.jsx');
 
-
-
 var initial = TruckItemStore.getItems();
 
 function render(){

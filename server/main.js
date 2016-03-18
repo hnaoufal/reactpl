@@ -7,7 +7,7 @@ app.set('view engine','ejs');
 app.get('/', function(req,res){
 	res.render('./../app/index.ejs',{});
 })
-.use(express.static(__dirname + '/../.tmp'))
+
 .listen(7778);
 
 app.use(parser.json());
