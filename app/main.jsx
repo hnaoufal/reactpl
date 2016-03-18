@@ -1,19 +1,18 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-
+var TruckItemStore = require ('./stores/TruckItemStore.jsx');
 var TruckItemList = require('./components/TruckItemList.jsx');
 
 
 
-var initial = [{
-	name: "Truck X-C32"
-},{
-	name: "Truck B-32"
-},{
-	name: "Truck D-K2",
-	rented: true
-},{
-	name: "Truck A-11"
-}];
+var initial = TruckItemStore.getItems();
 
+function render(){
 ReactDOM.render(<TruckItemList items={initial} />,app);
+}
+TruckItemStore.onChange(function(items){
+	initial = items;
+	render();
+});
+
+render();

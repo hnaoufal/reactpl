@@ -2,15 +2,15 @@ var uuid = require('node-uuid');
 var listeners = {};
 
 module.exports = {
-	register: function(cb){
+	register: (cb)=>{
 		var id = uuid.v1();
-		listerners[id] = callback;
+		listeners[id] = cb;
 		return id;
 	},
-	dispatch: function(payload){
+	dispatch: (payload)=>{
 		console.info("Dispatching...", payload);
-		for (var id in listeners){
-			var listener = listeners[id];
+		for (var index in listeners){
+			var listener = listeners[index];
 			listener(payload);
 		}
 	}

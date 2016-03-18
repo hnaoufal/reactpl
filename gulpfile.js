@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var LiveServer = require('gulp-live-server');
 var browserSync= require('browser-sync');
 var browserify= require('browserify');
+var babelify= require('babelify');
 var reactify= require('reactify');
 var source = require('vinyl-source-stream');
 
@@ -16,13 +17,14 @@ gulp.task('bundle',function(){
 		debug: true,
 	})
 	.transform(reactify)
+	.transform(babelify)
 	.bundle()
 	.pipe(source('app.js'))
 	.pipe(gulp.dest('./.tmp'));
 });
 
 gulp.task('copy', function(){
-	gulp.src(['app/*.css'])
+	gulp.src(['app/*.css','bower_components/skeleton/css/*.css'])
 	.pipe(gulp.dest('./.tmp'));
 
 });

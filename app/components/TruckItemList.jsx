@@ -4,19 +4,19 @@ var TruckItem = require ('./TruckItem.jsx');
 var TruckListItemAdd = require ('./TruckListItemAdd.jsx');
 
 module.exports = React.createClass({
-	render: function(){
+	render(){
 		return (
-			<div>
+			<div className="container">
 				<h1>Truck List </h1>
-				<div>
 					{
 						this.props.items.map(function(item,index){
 							return (
+								<div className="row">
 								<TruckItem item={item} key={"item"+index} />
+							</div>
 							);
 						})
 					}
-				</div>
 				<TruckListItemAdd />
 			</div>
 		);
