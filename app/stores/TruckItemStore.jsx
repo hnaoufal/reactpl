@@ -20,7 +20,9 @@ helper.get("api/items")
 		items.push(item);
 		triggerListeners();
 
+		helper.post("api/items",item);
 	}
+
 	function deleteTruckItem(item){
 		var index = items.findIndex(function(_item){
 			return _item.name == item.name;
