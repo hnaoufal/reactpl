@@ -1,22 +1,39 @@
 module.exports = function (app){
-	var items = [{
-	name: "Truck X-C32"
-},{
-	name: "Truck B-32"
-},{
-	name: "Truck D-K2",
-	rented: true
-},{
-	name: "Truck A-11"
-}];
 
-app.route('/api/items')
+	var TruckItem = require('./../models/TruckItem.js');
+
+	app.route('/api/items')
 .get(function(req,res){
-	res.send(items);
+	TruckItem.find(function(error,doc){
+	res.send(doc);
+	});
 })
 .post(function(req,res){
 	var item = req.body;
-	items.push(item);
+	//items.push(item);
+	var truckItem = new TruckItem(item);
+	truckItem.save(function(err, data){
+		res.status(300).send();
+	});
+});
+
+app.route('api/items/:id')
+.delete(function(req,res){
+	TruckItem.find({
+		_id: req.params.id
+	}).remove();
+})
+.patch(function(req,res){
+	TruckItem.findOne({
+		_id: req.body._id
+
+	}, function(error, doc){
+		for (var key in req.body){
+			doc[key]=req.body[key];
+	}
+	doc.save();
+	res.status(200).send();
+});
 });
 };
 
